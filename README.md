@@ -14,7 +14,7 @@ Também foram adicionados inserts de SQL, e outros comandos, para facilitar os t
 
 4. Consulta de dados de forma eficiente usando Views
 
-5. Automação de tarefas Edge Functions (envio de e-mails de confirmação, ​exportação de um csv do pedido de um cliente)
+5. Automação de tarefas com Edge Functions (envio de e-mails de confirmação, ​exportação de um CSV do pedido de um cliente)
 
 ## Tecnologias
 - Supabase
@@ -23,7 +23,7 @@ Também foram adicionados inserts de SQL, e outros comandos, para facilitar os t
 
 ## Testes
 ### SQL
-Disponíveis [aqui](./backend/comandos_para_testes.sql).
+Disponíveis [aqui](./backend/testes_sql.sql).
 
 ### Postman
 Disponíveis [aqui](./backend/testes_postman.md).
