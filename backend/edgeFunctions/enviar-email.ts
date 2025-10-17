@@ -24,15 +24,14 @@ const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
 Deno.serve(async (req: Request)=>{
   
   /**
-   * Nesse exemplo, decidi deixar o assunto e a mensagem do e-mail já definidos,
-   * então eu não estou extraindo os atributo de 'subject' ou 'html' do corpo da
-   * requisição, apenas o e-mail de destino 'to'
+   * O único atributo extraído do corpo da requisição é o e-mail de destino 'to'.
+   * O assunto e a mensagem do e-mail ('subject' e 'html') são construídos no
+   * próprio código.
    */
-
   const { to } = await req.json();
 
   /**
-   * Aqui eu estou consultando o banco de dados no supabase, pegando os dados
+   * Consulta consultando o banco de dados no supabase, pegando os dados
    * de todos os pedidos do e-commerce
    */
   const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
@@ -50,10 +49,10 @@ Deno.serve(async (req: Request)=>{
   }
 
   /**
-   * Aqui eu estou montando a string de um html para colocar na mensagem do e-mail,
-   * usando os dados consultados
+   * Montagem de uma tabela em HTML para acomodar os dados dos pedidos,
+   * que será enviada no corpo do e-mail
    */
-  const tabela = criarTabelaPedidos(data);
+  const tabela: string = criarTabelaPedidos(data);
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -88,7 +87,7 @@ Deno.serve(async (req: Request)=>{
 const BORDA = "border: 1px solid #000;";
 
 /**
- * Cria a tabela de pedidos a ser enviada por e-mail
+ * Cria a tabela de pedidos para o e-mail
  * 
  * @param pedidos 
  * @returns 

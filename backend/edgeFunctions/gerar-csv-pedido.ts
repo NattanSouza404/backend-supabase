@@ -20,7 +20,7 @@ Deno.serve(async (req: Request) => {
     const { id_pedido } = await req.json();
 
     /**
-     * Aqui eu estou consultando os dados da view de 'itens vendidos', filtrando
+     * Esse trecho consulta os dados da view de 'itens vendidos', filtrando
      * os itens pelo ID de um pedido
      */
     const { data, error } = await supabaseAdmin
@@ -39,7 +39,8 @@ Deno.serve(async (req: Request) => {
     const csv = paraCSV(data);
 
     /**
-     * Testei apenas pelo Postman, então ele só retornou uma string de um csv.
+     * Os testes foram feitos apenas pelo Postman, onde só é retornada uma string
+     * em formato CSV.
      * Mas se for usado em um frontend React, por exemplo, é possível fazer o
      * download do arquivo
      */
@@ -57,7 +58,7 @@ Deno.serve(async (req: Request) => {
 });
 
 /**
- * Função responsável por converter os dados para o formato CSV.
+ * Função responsável por converter os dados para o formato CSV
  * @param dados 
  * @returns 
  */
