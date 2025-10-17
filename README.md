@@ -1,6 +1,8 @@
 # Backend Supabase
 
-Esse projeto é uma estrutura de um backend para um ecommerce, usando os recursos do Supabase. Para realizar requisições para a API do Supabase, foi utilizado o Postman.
+Esse projeto é uma estrutura de um backend para um ecommerce, usando os recursos do Supabase. Para realizar requisições para a API, foi utilizado o Postman.
+
+Também foram adicionados inserts de SQL, e outros comandos, para facilitar os testes.
 
 ## Principais funcionalidades
 
@@ -17,6 +19,14 @@ Esse projeto é uma estrutura de um backend para um ecommerce, usando os recurso
 ## Tecnologias
 - Supabase
 - Postman
+- Resend
+
+## Testes
+### SQL
+Disponíveis [aqui](./backend/comandos_para_testes.sql).
+
+### Postman
+Disponíveis [aqui](./backend/testes_postman.md).
 
 ## Referências
 [Documentação Oficial Supabase](https://supabase.com/docs)

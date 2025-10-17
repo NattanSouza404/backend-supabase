@@ -23,4 +23,9 @@ https://[projeto].supabase.co/functions/v1/gerar-csv-pedido?id_pedido=1
 - Envio de relatório por e-mail (POST)
 ```
 https://[projeto].supabase.co/functions/v1/enviar-email
+
+# No corpo da requisição
+{
+    "to": "email@exemplo.com"
+}
 ```
