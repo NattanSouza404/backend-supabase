@@ -3,6 +3,12 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") ?? "";
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
 
+/**
+ * Essa Edge Function é responsável por converter um único
+ * pedido para o formato CSV, a partir do ID desse pedido.
+ * 
+ * É necessário adicionar o parâmetro id_pedido na URL
+ */
 Deno.serve(async (req: Request) => {
   try {
     const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
@@ -19,7 +25,7 @@ Deno.serve(async (req: Request) => {
       throw error;
     }
 
-    const csv = toCSV(data);
+    const csv = paraCSV(data);
 
     const filename = `pedidos_export_${new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-")}.csv`;
     return new Response(csv, {
@@ -34,11 +40,16 @@ Deno.serve(async (req: Request) => {
   }
 });
 
-function toCSV<T extends Record<string, any>>(data: T[]): string {
-  if (data.length === 0) return "";
+/**
+ * Função responsável por converter os dados para o formato CSV.
+ * @param dados 
+ * @returns 
+ */
+function paraCSV<T extends Record<string, any>>(dados: T[]): string {
+  if (dados.length === 0) return "";
 
-  const headers = Object.keys(data[0]);
-  const rows = data.map(obj =>
+  const headers = Object.keys(dados[0]);
+  const rows = dados.map(obj =>
     headers.map(h => JSON.stringify(obj[h] ?? "")).join(",")
   );
 

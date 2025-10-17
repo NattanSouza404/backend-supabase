@@ -1,3 +1,4 @@
+-- Função que calcula o total de pedidos do e-commerce
 CREATE OR REPLACE FUNCTION total_de_pedidos() RETURNS bigint
 LANGUAGE plpgsql
 AS $$
@@ -9,6 +10,9 @@ BEGIN
 END;
 $$;
 
+-- Função que atualiza o status de um pedido. Para chamá-la, deve se informar:
+-- 1. id do pedido;
+-- 2. novo status do pedido;
 CREATE OR REPLACE FUNCTION atualizar_status_pedido(id_pedido numeric, status_pedido varchar) RETURNS void
 LANGUAGE plpgsql
 AS $$

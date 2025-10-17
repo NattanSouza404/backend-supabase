@@ -1,6 +1,4 @@
--- WARNING: This schema is for context only and is not meant to be run.
--- Table order and constraints may not be valid for execution.
-
+-- Tabela de clientes
 CREATE TABLE public.clientes (
   cli_id bigint GENERATED ALWAYS AS IDENTITY NOT NULL,
   cli_nome character varying NOT NULL DEFAULT ''::character varying,
@@ -10,6 +8,7 @@ CREATE TABLE public.clientes (
   CONSTRAINT clientes_pkey PRIMARY KEY (cli_id)
 );
 
+-- Tabela de produtos
 CREATE TABLE public.produtos (
   prd_id bigint GENERATED ALWAYS AS IDENTITY NOT NULL,
   prd_nome character varying NOT NULL,
@@ -18,6 +17,8 @@ CREATE TABLE public.produtos (
   CONSTRAINT produtos_pkey PRIMARY KEY (prd_id)
 );
 
+-- Tabela de pedidos
+-- Pedidos tem uma relação com a tabela de clientes
 CREATE TABLE public.pedidos (
   ped_id bigint GENERATED ALWAYS AS IDENTITY NOT NULL,
   ped_cli_id bigint NOT NULL,
@@ -27,6 +28,8 @@ CREATE TABLE public.pedidos (
   CONSTRAINT pedidos_ped_cli_id_fkey FOREIGN KEY (ped_cli_id) REFERENCES public.clientes(cli_id)
 );
 
+-- Tabela de itens de cada pedido
+-- Tabela que representa uma relação de muitos para muitos entre pedidos e produtos
 CREATE TABLE public.itens_pedido (
   ite_ped_id bigint NOT NULL,
   ite_prd_id bigint NOT NULL,
