@@ -38,11 +38,22 @@ VALUES (
   (SELECT prd_preco FROM produtos WHERE prd_id = 2)
 );
 
+
+--
+--
+-- CONSULTAS
+--
+--
+
 -- Comandos para consultar as tabelas
 SELECT * FROM clientes;
 SELECT * FROM pedidos;
 SELECT * FROM produtos;
 SELECT * FROM itens_pedido;
+
+-- Comandos pra consultar Views
+SELECT * FROM vw_itens_vendidos;
+SELECT * FROM vw_pedidos;
 
 
 --

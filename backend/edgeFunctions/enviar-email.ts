@@ -7,16 +7,34 @@ const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
 
 /**
- * Essa Edge Function retorna uma tabela dos pedidos do e-commerce
+ * Essa Edge Function retorna um tabela dos pedidos do e-commerce
  * 
  * API do Resend foi usada para mandar e-mails nessa Edge Function.
  * Foi seguido o template 'Send Emails' do próprio Supabase.
  *
  * É necessário adicionar como secret a váriavel de ambiente 'RESEND_API_KEY'.
+ * 
+ * Também é necessário colocar no corpo da requisição o e-mail de destino:
+ * 
+ *    {
+ *      "to": "email@exemplo.com"
+ *    }
+ * 
  */
 Deno.serve(async (req: Request)=>{
-  const { to, subject, html } = await req.json();
+  
+  /**
+   * Nesse exemplo, decidi deixar o assunto e a mensagem do e-mail já definidos,
+   * então eu não estou extraindo os atributo de 'subject' ou 'html' do corpo da
+   * requisição, apenas o e-mail de destino 'to'
+   */
 
+  const { to } = await req.json();
+
+  /**
+   * Aqui eu estou consultando o banco de dados no supabase, pegando os dados
+   * de todos os pedidos do e-commerce
+   */
   const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
   const { data, error } = await supabaseAdmin
@@ -31,6 +49,10 @@ Deno.serve(async (req: Request)=>{
     throw Error('Sem registros.');
   }
 
+  /**
+   * Aqui eu estou montando a string de um html para colocar na mensagem do e-mail,
+   * usando os dados consultados
+   */
   const tabela = criarTabelaPedidos(data);
 
   const res = await fetch('https://api.resend.com/emails', {
@@ -91,27 +113,30 @@ function criarTabelaPedidos(pedidos: any[]): string {
 }
 
 /**
- * Cria o corpo da tabela de pedidos para o e-mail
+ * Cria o corpo da tabela de pedidos para o e-mail,
+ * criando uma linha para cada pedido
  * 
  * @param pedidos 
  * @returns 
  */
 function criarCorpoTabelaHTML(pedidos: any[]): string{
-  let colunas: string = "<tbody>";
+  let linhas: string = "";
 
   pedidos.forEach((pedido: any) => {
-    colunas += `
+    linhas += `
       <tr>
         <td style="${BORDA}">${pedido.id_pedido}</td>
         <td style="${BORDA}">${pedido.nome_cliente}</td>
         <td style="${BORDA}">${pedido.data_pedido}</td>
         <td style="${BORDA}">${pedido.status_pedido}</td>
-        <td style="${BORDA}">${pedido.valor_total}</td>
+        <td style="${BORDA}">R$ ${pedido.valor_total}</td>
       </tr>
     `;
   });
 
-  colunas += "</tbody>";
-
-  return colunas;
+  return `
+    <tbody>
+      ${linhas}
+    </tbody>
+  `;
 }

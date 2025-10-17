@@ -17,7 +17,12 @@ https://[projeto].supabase.co/rest/v1/produtos?select=*
 
 - CSV de um pedido específico (POST)
 ```
-https://[projeto].supabase.co/functions/v1/gerar-csv-pedido?id_pedido=1
+https://[projeto].supabase.co/functions/v1/gerar-csv-pedido
+
+# No corpo da requisição
+{
+    "id_pedido": 1
+}
 ```
 
 - Envio de relatório por e-mail (POST)
