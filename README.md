@@ -30,5 +30,7 @@ Disponíveis [aqui](./backend/testes_postman.md).
 
 ## Referências
 [Documentação Oficial Supabase](https://supabase.com/docs)
+
 [Documentação Oficial Supabase - Select Supabase](https://supabase.com/docs/reference/javascript/select)
+
 [Resend - Onboarding](https://resend.com/onboarding)
