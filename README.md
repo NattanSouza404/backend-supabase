@@ -1,6 +1,6 @@
-# E-commerce Loja
+# Backend Supabase
 
-Esse projeto é uma estrutura de um backend para um ecommerce, usando os recursos do Supabase.
+Esse projeto é uma estrutura de um backend para um ecommerce, usando os recursos do Supabase. Para realizar requisições para a API do Supabase, foi utilizado o Postman.
 
 ## Principais funcionalidades
 
@@ -20,3 +20,5 @@ Esse projeto é uma estrutura de um backend para um ecommerce, usando os recurso
 
 ## Referências
 [Documentação Oficial Supabase](https://supabase.com/docs)
+[Documentação Oficial Supabase - Select Supabase](https://supabase.com/docs/reference/javascript/select)
+[Resend - Onboarding](https://resend.com/onboarding)
