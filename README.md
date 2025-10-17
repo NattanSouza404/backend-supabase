@@ -21,6 +21,22 @@ Também foram adicionados inserts de SQL, e outros comandos, para facilitar os t
 - Postman
 - Resend
 
+## Como usar o projeto
+
+Para criar o backend, é necessário criar uma conta no Supabase e criar um projeto na plataforma.
+
+A ordem de execução dos scripts recomendada é essa:
+- tabelas.sql
+- row_level_security.sql
+- funcoes.sql
+- views.sql
+
+Após isso, deve-se adicionar as Edge Functions:
+- enviar-email (disponível no arquivo enviar-email.ts)
+- gerar-csv-pedido (disponível no arquivo gerar-csv-pedido.ts)
+
+Também deve-se adicionar nos secrets das Edge Functions uma chave válida para a variável RESEND_API_KEY, sendo necessária a criação de uma conta no [Resend](https://resend.com/).
+
 ## Testes
 ### SQL
 Disponíveis [aqui](./backend/testes_sql.sql).
