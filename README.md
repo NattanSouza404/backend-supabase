@@ -1,4 +1,4 @@
-# Backend Supabase
+# <image height="22px" src="./docs/logo_supabase.png"/> Backend Supabase
 
 Esse projeto é uma estrutura de um backend para um ecommerce, usando os recursos do Supabase. Para realizar requisições para a API, foi utilizado o Postman.
 
